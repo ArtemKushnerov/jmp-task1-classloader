@@ -14,7 +14,7 @@ public class LoadClass {
     /**
      * Invokes the specified method on the class instance loaded from the disk.
      *
-     * @param args command line arguments, should contain path to the file, or the default one will be used
+     * @param args command line arguments, should contain path to the file
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
