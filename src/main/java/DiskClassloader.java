@@ -35,12 +35,4 @@ public class DiskClassLoader extends ClassLoader {
         return aClass;
     }
 
-    public String getPath2Class() {
-        return path2Class;
-    }
-
-    public void setPath2Class(String path2Class) {
-        this.path2Class = path2Class;
-    }
-
 }
