@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import org.apache.log4j.Logger;
 
 /**
  * The main entrance to the program.
@@ -7,6 +7,8 @@ import java.util.Scanner;
  * @since May 13, 2015
  */
 public class LoadClass {
+
+    final static Logger logger = Logger.getLogger(LoadClass.class);
 
     private static String className = "Semaphore";
     private static String methodName = "lever";
@@ -25,12 +27,12 @@ public class LoadClass {
 
         String path2class = args[0];
         do {
-            System.out.println("Loading class from '" + path2class + "' directory.");
+            logger.info("Loading class from '" + path2class + "' directory.");
             ClassLoader classLoader = new DiskClassLoader(path2class);
             Class<?> clazz = classLoader.loadClass(className);
             Object instance = clazz.newInstance();
             clazz.getMethod(methodName).invoke(instance);
-            System.out.println("Please, press enter when the '.class' file has been changed for reloading.");
+            logger.info("Please, press enter when the '.class' file has been changed for reloading.");
             System.in.read();
         } while (true);
     }

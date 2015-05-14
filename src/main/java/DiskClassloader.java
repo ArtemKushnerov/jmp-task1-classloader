@@ -1,3 +1,5 @@
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,6 +13,8 @@ import java.nio.file.Paths;
  */
 public class DiskClassLoader extends ClassLoader {
 
+    final static Logger logger = Logger.getLogger(DiskClassLoader.class);
+
     /**
      * Path to the file on the disk.
      */
@@ -22,16 +26,16 @@ public class DiskClassLoader extends ClassLoader {
 
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
-        System.out.println("Loading in progress...");
+        logger.info("Loading in progress...");
         Path path = Paths.get(path2Class);
         byte[] classData = null;
         try {
             classData = Files.readAllBytes(path);
         } catch (IOException e) {
-            System.out.println("Error: " + e );
+            logger.error("Error: " + e );
         }
         Class<?> aClass = defineClass(name, classData, 0, classData.length);
-        System.out.println("Congrats! The class '" + aClass.getName()+ "' is successfully loaded from the disk.");
+        logger.info("Congrats! The class '" + aClass.getName() + "' is successfully loaded from the disk.");
         return aClass;
     }
 
